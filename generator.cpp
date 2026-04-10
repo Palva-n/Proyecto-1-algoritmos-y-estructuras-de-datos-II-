@@ -9,9 +9,11 @@
 
 using ll = long long;
 
-const ll small = 128LL * (1024LL * 1024LL)/sizeof(int); 
-const ll medium =  256LL * (1024LL * 1024LL)/sizeof(int);
-const ll large = 512LL *(1024LL * 1024LL)/sizeof(int);
+const ll small = 32LL * (1024LL * 1024LL)/sizeof(int); 
+const ll medium =  64LL * (1024LL * 1024LL)/sizeof(int);
+const ll large = 128LL *(1024LL * 1024LL)/sizeof(int);
+const ll tiny = 18LL * 1024LL /sizeof(int); 
+
 
 void escritura(const std::string path,const ll size){
     //fopen es una funcion tipo C, no conoce string, entonces hay que pasar 
@@ -78,6 +80,8 @@ int main(int argc, char* argv[]){
         size = medium;
     } else if (size_str == "LARGE"){
         size = large; 
+    } else if (size_str == "TINY"){
+        size = tiny; 
     } else {
             std:: cout << "tamano invalido\n"; 
             return 1; 
