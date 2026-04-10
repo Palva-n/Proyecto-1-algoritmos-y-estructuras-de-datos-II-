@@ -109,23 +109,23 @@ int main(int argc, char* argv[]){
         std::cout << "error de apertura al copiar\n"; 
         return 1; 
     }
-    int t; 
+    int to_read = 0; 
     {
         PagedArray arr = PagedArray(output, pageSize, pageCount);
-        t = arr.size(); 
+        to_read = arr.size(); 
         auto start = std::chrono::high_resolution_clock::now();
         if (algo == "QuickSort"){
             std::cout << "iniciando quicksort, size: " << arr.size() << "\n";
             QuickSort(arr, 0, arr.size() - 1);
         } else if (algo == "insertionSort"){
-            std::cout<< "iniciando insertion sort con los primeros 1000 elementos: \n"; 
-            insertionSort(arr, 0, (999 > arr.size()) ? arr.size() - 1 : 999);
+            std::cout<< "iniciando insertion sort: \n"; 
+            insertionSort(arr, 0, arr.size() - 1);
         } else if (algo == "selectionSort"){
-            std::cout<<"iniciando selection Sort con los primeros 1000 elementos"; 
-            selectionSort(arr, 0, (999 > arr.size()) ? arr.size() - 1 : 999);
+            std::cout<<"iniciando selection Sort"; 
+            selectionSort(arr, 0, arr.size() - 1);
         } else if (algo == "shellSort"){
             std::cout << "iniciando ShellSort, size: " << arr.size() << "\n";  
-            shellSort(arr, 0, (999 > arr.size()) ? arr.size() - 1 : 999);
+            shellSort(arr, 0, arr.size() - 1);
         } else if (algo == "mergeSort"){
             std::cout << "iniciando mergeSort, size: " << arr.size() << "\n";  
             mergeSort(arr, 0, arr.size() - 1);
@@ -136,15 +136,13 @@ int main(int argc, char* argv[]){
         auto end = std::chrono::high_resolution_clock::now();
         double elapsed = std::chrono::duration<double>(end - start).count();
 
-        std::cout << pageSize << "," << pageCount << ","
-          << arr.getPageHits() << "," 
-          << arr.getPageFaults() << ","  
+        std::cout << "Pagesize: " << pageSize << "\n PageCount:" << pageCount << "\n PageHits: "
+          << arr.getPageHits() << "\n PageFaults: " 
+          << arr.getPageFaults() << "\n Duracion: "  
           << elapsed << "\n";
 
     }
-    if (algo == "QuickSort" || algo == "mergeSort"){
-        creador_txt(output, (int) 1e5 );
-    } else{
-        creador_txt(output, (999 > t) ? t : 999); 
-    }
+    
+    creador_txt(output, (int) to_read);
+    
 }
