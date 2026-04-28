@@ -24,6 +24,7 @@ Para poder ejecutar algoritmos con sorter se usa el siguiente comando:
 
 
 sorter.exe -input INPUT -output OUTPUT -alg ALGORITHM -pageSize SIZE -pageCount COUNT. 
-
+Algorithm: quickSort, shellSort, insertionSort,mergeSort, selectionSort
+SIZE: SMALL, MEDIUM, LARGE
 
 las palabras en mayusculas son los argumentos.
